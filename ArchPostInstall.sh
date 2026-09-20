@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-# Store the script's path for clean self-deletion
 SCRIPT_PATH="$(readlink -f "$0")"
 
 echo "=== Arch Linux Post-Installation Configuration ==="
