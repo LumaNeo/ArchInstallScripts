@@ -30,7 +30,7 @@ read -rsp "Enter root password: " ROOT_PASSWORD </dev/tty
 echo ""
 
 read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE </dev/tty
-SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}""
+SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}"
 
 echo -e "\n=== Configuration Summary ==="
 echo "Disk:           $DISK"
