@@ -6,6 +6,9 @@ echo "=== Arch Linux Installation Configuration ==="
 read -rp "Enter target disk [/dev/sda]: " INPUT_DISK </dev/tty
 DISK="${INPUT_DISK:-/dev/sda}"
 
+read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE </dev/tty
+SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}"
+
 read -rp "Enter keymap [de-latin1]: " INPUT_KEYMAP </dev/tty
 KEYMAP="${INPUT_KEYMAP:-de-latin1}"
 
@@ -29,8 +32,20 @@ echo ""
 read -rsp "Enter root password: " ROOT_PASSWORD </dev/tty
 echo ""
 
-read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE </dev/tty
-SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}"
+echo -e "\n=== Configuration Summary ==="
+echo "Disk:           $DISK"
+echo "Swap Size:      $SWAP_SIZE"
+echo "Keymap:         $KEYMAP"
+echo "Timezone:       $TIMEZONE"
+echo "Locales:        $FORMAT_LOCALE / $DISPLAY_LANG_LOCALE"
+echo "Hostname:       $HOSTNAME"
+echo "User:           $USERNAME"
+echo "============================="
+read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
+if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+    echo "Installation cancelled."
+    exit 1
+fi
 
 echo "=== Setting Keymap ==="
 loadkeys "$KEYMAP"
