@@ -32,21 +32,6 @@ echo ""
 read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE </dev/tty
 SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}"
 
-echo -e "\n=== Configuration Summary ==="
-echo "Disk:           $DISK"
-echo "Keymap:         $KEYMAP"
-echo "Timezone:       $TIMEZONE"
-echo "Locales:        $FORMAT_LOCALE / $DISPLAY_LANG_LOCALE"
-echo "Hostname:       $HOSTNAME"
-echo "User:           $USERNAME"
-echo "Swap Size:      $SWAP_SIZE"
-echo "============================="
-read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
-if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
-    echo "Installation cancelled."
-    exit 1
-fi
-
 echo "=== Setting Keymap ==="
 loadkeys "$KEYMAP"
 
