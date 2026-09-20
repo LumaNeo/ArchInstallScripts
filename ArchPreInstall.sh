@@ -41,11 +41,7 @@ echo "Hostname:       $HOSTNAME"
 echo "User:           $USERNAME"
 echo "Swap Size:      $SWAP_SIZE"
 echo "============================="
-read -rp "Proceed with installation?: " CONFIRM </dev/tty
-if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
-    echo "Installation cancelled."
-    exit 1
-fi
+read -rp "" </dev/tty
 
 echo "=== Setting Keymap ==="
 loadkeys "$KEYMAP"
