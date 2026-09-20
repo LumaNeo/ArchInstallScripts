@@ -3,34 +3,34 @@ set -e
 
 echo "=== Arch Linux Installation Configuration ==="
 
-read -rp "Enter target disk [/dev/sda]: " INPUT_DISK
+read -rp "Enter target disk [/dev/sda]: " INPUT_DISK </dev/tty
 DISK="${INPUT_DISK:-/dev/sda}"
 
-read -rp "Enter keymap [de-latin1]: " INPUT_KEYMAP
+read -rp "Enter keymap [de-latin1]: " INPUT_KEYMAP </dev/tty
 KEYMAP="${INPUT_KEYMAP:-de-latin1}"
 
-read -rp "Enter timezone [Europe/Berlin]: " INPUT_TIMEZONE
+read -rp "Enter timezone [Europe/Berlin]: " INPUT_TIMEZONE </dev/tty
 TIMEZONE="${INPUT_TIMEZONE:-Europe/Berlin}"
 
-read -rp "Enter format locale [de_DE]: " INPUT_FORMAT_LOCALE
+read -rp "Enter format locale [de_DE]: " INPUT_FORMAT_LOCALE </dev/tty
 FORMAT_LOCALE="${INPUT_FORMAT_LOCALE:-de_DE}"
 
-read -rp "Enter display language locale [en_US]: " INPUT_DISPLAY_LANG_LOCALE
+read -rp "Enter display language locale [en_US]: " INPUT_DISPLAY_LANG_LOCALE </dev/tty
 DISPLAY_LANG_LOCALE="${INPUT_DISPLAY_LANG_LOCALE:-en_US}"
 
-read -rp "Enter hostname [neo]: " INPUT_HOSTNAME
+read -rp "Enter hostname [neo]: " INPUT_HOSTNAME </dev/tty
 HOSTNAME="${INPUT_HOSTNAME:-neo}"
 
-read -rp "Enter username [luma]: " INPUT_USERNAME
+read -rp "Enter username [luma]: " INPUT_USERNAME </dev/tty
 USERNAME="${INPUT_USERNAME:-luma}"
 
-read -rsp "Enter user password: " USER_PASSWORD
+read -rsp "Enter user password: " USER_PASSWORD </dev/tty
 echo ""
-read -rsp "Enter root password: " ROOT_PASSWORD
+read -rsp "Enter root password: " ROOT_PASSWORD </dev/tty
 echo ""
 
-read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE
-SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}"
+read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE </dev/tty
+SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}""
 
 echo -e "\n=== Configuration Summary ==="
 echo "Disk:           $DISK"
@@ -41,7 +41,7 @@ echo "Hostname:       $HOSTNAME"
 echo "User:           $USERNAME"
 echo "Swap Size:      $SWAP_SIZE"
 echo "============================="
-read -rp "Proceed with installation? (y/N): " CONFIRM
+read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
     echo "Installation cancelled."
     exit 1
