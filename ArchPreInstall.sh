@@ -41,7 +41,7 @@ echo "Hostname:       $HOSTNAME"
 echo "User:           $USERNAME"
 echo "Swap Size:      $SWAP_SIZE"
 echo "============================="
-read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
+read -rp "Proceed with installation?: " CONFIRM </dev/tty
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
     echo "Installation cancelled."
     exit 1
