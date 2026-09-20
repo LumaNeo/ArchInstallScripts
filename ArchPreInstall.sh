@@ -41,7 +41,7 @@ echo "Locales:        $FORMAT_LOCALE / $DISPLAY_LANG_LOCALE"
 echo "Hostname:       $HOSTNAME"
 echo "User:           $USERNAME"
 echo "============================="
-read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
+read -rp "Proceed with installation? (y/Y): " CONFIRM </dev/tty
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
     echo "Installation cancelled."
     exit 1
