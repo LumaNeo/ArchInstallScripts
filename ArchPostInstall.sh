@@ -17,12 +17,12 @@ FILE_MANAGER="${FILE_MANAGER:-thunar}"
 read -rp "Enter Browser [librewolf]: " BROWSER </dev/tty
 BROWSER="${BROWSER:-librewolf}"
 
-echo -e "\n===== Configuration Summary ====="
-echo "Window Manager:  $WINDOW_MANAGER"
-echo "Terminal:        $TERMINAL"
-echo "File Manager:    $FILE_MANAGER"
-echo "Browser:         $BROWSER"
-echo "================================"
+echo -e "\n=== Configuration Summary ==="
+echo "Window Manager: $WINDOW_MANAGER"
+echo "Terminal:       $TERMINAL"
+echo "File Manager:   $FILE_MANAGER"
+echo "Browser:        $BROWSER"
+echo "============================="
 
 echo ""
 read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
@@ -45,9 +45,7 @@ sudo pacman -S --needed --noconfirm \
 
 echo "=== Installing AUR Helper (yay) ==="
 git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ..
+(cd yay && makepkg -si --noconfirm)
 rm -rf yay
 
 echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
