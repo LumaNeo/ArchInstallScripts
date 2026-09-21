@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+lsblk
+echo ""
+
 echo "=== Arch Linux Installation Configuration ==="
 
 read -rp "Enter target disk [/dev/sda]: " INPUT_DISK </dev/tty
@@ -73,8 +76,8 @@ echo "=== Partitioning Disk ($DISK) ==="
 parted -s "$DISK" mklabel gpt
 parted -s "$DISK" mkpart primary fat32 1MiB 100MiB
 parted -s "$DISK" set 1 esp on
-parted -s "$DISK" mkpart primary linux-swap 100MiB "$SWAP_SIZE"
-parted -s "$DISK" mkpart primary ext4 "$SWAP_SIZE" 100%
+parted -s "$DISK" mkpart primary linux-swap 100MiB "+$SWAP_SIZE"
+parted -s "$DISK" mkpart primary ext4 "+$SWAP_SIZE" 100%
 
 if [[ "$DISK" =~ "nvme" ]]; then
     BOOT_PART="${DISK}p1"
@@ -151,7 +154,6 @@ systemctl enable NetworkManager iwd dhcpcd
 echo "--> Installing GRUB Bootloader"
 grub-install "$DISK"
 grub-mkconfig -o /boot/grub/grub.cfg
-EOF
 
 echo "=== Preparing Post-Installation Script ==="
 USER_HOME="/home/$USERNAME"
@@ -163,6 +165,7 @@ else
     echo "ERROR: Home directory $USER_HOME does not exist. Post-install script download skipped."
     exit 1
 fi
+EOF
 
 echo "=== Unmounting Drives ==="
 umount -R /mnt
