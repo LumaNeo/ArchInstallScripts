@@ -156,13 +156,13 @@ grub-install "$DISK"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "=== Preparing Post-Installation Script ==="
-USER_HOME="/home/$USERNAME"
-cd "$USER_HOME"
+cd home
+cd "$USERNAME"
 curl -sL "https://raw.githubusercontent.com/LumaNeo/ArchInstallScripts/refs/heads/main/ArchPostInstall.sh" -o ArchPostInstall.sh
 chmod +x ArchPostInstall.sh
 cd ..
 cd ..
-chown -R "$USERNAME:$USERNAME" "\$USER_HOME"
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME"
 EOF
 
 echo "=== Unmounting Drives ==="
