@@ -5,6 +5,13 @@ clear
 
 SCRIPT_PATH="$(readlink -f "$0")"
 
+echo "=== Checking Internet Connectivity ==="
+if ! ping -c 1 1.1.1.1 &>/dev/null && ! ping -c 1 archlinux.org &>/dev/null; then
+    echo "ERROR: No internet connection detected."
+    echo "U need internet you idiot"
+    exit 1
+fi
+
 echo "=== Arch Linux Post-Installation Configuration ==="
 
 read -rp "Enter Window Manager [hyprland]: " WINDOW_MANAGER </dev/tty
@@ -18,8 +25,6 @@ FILE_MANAGER="${FILE_MANAGER:-thunar}"
 
 read -rp "Enter Browser [librewolf]: " BROWSER </dev/tty
 BROWSER="${BROWSER:-librewolf}"
-
-clear
 
 echo -e "\n=== Configuration Summary ==="
 echo "Window Manager: $WINDOW_MANAGER"
@@ -56,7 +61,7 @@ echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
 mkdir -p /tmp
 curl -sSL -o /tmp/install.sh https://nixos.org/nix/install
 sh /tmp/install.sh --daemon --yes </dev/null
-sudo rm -rf /tmp
+rm -rf /tmp
 if systemctl list-unit-files | grep -q "nix-daemon.service"; then
     sudo systemctl enable --now nix-daemon.service
 fi
