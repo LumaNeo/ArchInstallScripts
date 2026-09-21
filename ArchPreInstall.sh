@@ -165,18 +165,17 @@ cd ..
 chown -R "$USERNAME:$USERNAME" "/home/$USERNAME"
 EOF
 
-echo "=== Unmounting Drives ==="
-umount -R /mnt
-
 echo "=== Base Installation Complete ==="
 
 echo ""
-read -rp "Reboot system now? (y/Y): " REBOOT_CONFIRM </dev/tty
+read -rp "Unmount and Reboot system now? (y/Y): " REBOOT_CONFIRM </dev/tty
 REBOOT_CONFIRM="${REBOOT_CONFIRM:-Y}"
 
 if [[ "$REBOOT_CONFIRM" =~ ^[Yy]$ ]]; then
+    echo "Unmounting Drives..."
+    umount -R /mnt
     echo "Rebooting..."
     reboot
 else
-    echo "Reboot skipped"
+    echo "Unmount and Reboot skipped"
 fi
