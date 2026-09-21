@@ -76,8 +76,8 @@ echo "=== Partitioning Disk ($DISK) ==="
 parted -s "$DISK" mklabel gpt
 parted -s "$DISK" mkpart primary fat32 1MiB 100MiB
 parted -s "$DISK" set 1 esp on
-parted -s "$DISK" mkpart primary linux-swap 100MiB "+$SWAP_SIZE"
-parted -s "$DISK" mkpart primary ext4 "+$SWAP_SIZE" 100%
+parted -s "$DISK" mkpart primary linux-swap 100MiB "$SWAP_SIZE"
+parted -s "$DISK" mkpart primary ext4 "$SWAP_SIZE" 100%
 
 if [[ "$DISK" =~ "nvme" ]]; then
     BOOT_PART="${DISK}p1"
