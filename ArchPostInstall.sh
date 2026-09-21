@@ -56,7 +56,7 @@ echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
 mkdir -p /tmp
 curl -sSL -o /tmp/install.sh https://nixos.org/nix/install
 sh /tmp/install.sh --daemon --yes </dev/null
-rm -rf /tmp
+sudo rm -rf /tmp
 if systemctl list-unit-files | grep -q "nix-daemon.service"; then
     sudo systemctl enable --now nix-daemon.service
 fi
