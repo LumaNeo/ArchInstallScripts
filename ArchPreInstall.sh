@@ -155,7 +155,7 @@ echo "--> Installing GRUB Bootloader"
 grub-install "$DISK"
 grub-mkconfig -o /boot/grub/grub.cfg
 
-echo "=== Preparing Post-Installation Script ==="
+echo "--> Preparing Post-Installation Script"
 cd home
 cd "$USERNAME"
 curl -sL "https://raw.githubusercontent.com/LumaNeo/ArchInstallScripts/refs/heads/main/ArchPostInstall.sh" -o ArchPostInstall.sh
