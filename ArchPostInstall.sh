@@ -25,7 +25,7 @@ echo "Browser:        $BROWSER"
 echo "============================="
 
 echo ""
-read -rp "Proceed with installation? (y/N): " CONFIRM </dev/tty
+read -rp "Proceed with installation? (y/Y): " CONFIRM </dev/tty
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
     echo "Installation cancelled."
     exit 1
@@ -49,7 +49,13 @@ git clone https://aur.archlinux.org/yay.git
 rm -rf yay
 
 echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
-curl --proto '=https' --tlsv1.2 -sSf https://nixos.org/nix/install | sh -s -- --daemon --yes
+mkdir -p /tmp
+curl -sSL -o /tmp/install.sh https://nixos.org/nix/install
+sh /tmp/install.sh --daemon --yes </dev/null
+rm -rf /tmp
+if systemctl list-unit-files | grep -q "nix-daemon.service"; then
+    sudo systemctl enable --now nix-daemon.service
+fi
 
 sudo mkdir -p /etc/nix
 echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
