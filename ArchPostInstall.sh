@@ -44,7 +44,7 @@ sudo pacman -S --needed --noconfirm \
     git
 
 echo "=== Installing AUR Helper (yay) ==="
-git clone https://aur.archlinux.org/yay.git
+sudo git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd..
