@@ -41,15 +41,14 @@ sudo pacman -S --needed --noconfirm \
     $FILE_MANAGER \
     $BROWSER \
     sddm \
-    git \
-    qt5-wayland \
-    qt6-wayland
+    git
 
 echo "=== Installing AUR Helper (yay) ==="
-TEMP_DIR=$(mktemp -d)
-git clone https://aur.archlinux.org/yay.git "$TEMP_DIR/yay"
-(cd "$TEMP_DIR/yay" && makepkg -si --noconfirm)
-rm -rf "$TEMP_DIR"
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+cd..
+rm -rf yay
 
 echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
 curl --proto '=https' --tlsv1.2 -sSf https://nixos.org/nix/install | sh -s -- --daemon --yes
