@@ -6,8 +6,8 @@ echo ""
 
 echo "=== Arch Linux Installation Configuration ==="
 
-read -rp "Enter target disk [/dev/sda]: " INPUT_DISK </dev/tty
-DISK="${INPUT_DISK:-/dev/sda}"
+read -rp "Enter target disk [/dev/nvme0n1]: " INPUT_DISK </dev/tty
+DISK="${INPUT_DISK:-/dev/nvme0n1}"
 
 read -rp "Enter swap size [4GiB]: " INPUT_SWAP_SIZE </dev/tty
 SWAP_SIZE="${INPUT_SWAP_SIZE:-4GiB}"
