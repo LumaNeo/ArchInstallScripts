@@ -44,12 +44,11 @@ sudo pacman -S --needed --noconfirm \
     git
 
 echo "=== Installing AUR Helper (yay) ==="
-sudo mkdir yay
-sudo git clone https://aur.archlinux.org/yay.git
+git clone https://aur.archlinux.org/yay.git
 cd yay
-sudo makepkg -si --noconfirm
+makepkg -si --noconfirm
 cd ..
-sudo rm -rf yay
+rm -rf yay
 
 echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
 curl --proto '=https' --tlsv1.2 -sSf https://nixos.org/nix/install | sh -s -- --daemon --yes
