@@ -113,11 +113,6 @@ pacstrap -K /mnt \
 echo "=== Generating Fstab ==="
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo "=== Preparing Post-Installation Script ==="
-mkdir -p "/mnt/home/$USERNAME"
-curl -sL "https://raw.githubusercontent.com/LumaNeo/ArchInstallScripts/refs/heads/main/ArchPostInstall.sh" -o "/mnt/home/$USERNAME/ArchPostInstall.sh"
-chmod +x "/mnt/home/$USERNAME/ArchPostInstall.sh"
-
 echo "=== Entering Chroot Environment ==="
 arch-chroot /mnt /bin/bash <<EOF
 set -e
@@ -157,6 +152,17 @@ echo "--> Installing GRUB Bootloader"
 grub-install "$DISK"
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
+
+echo "=== Preparing Post-Installation Script ==="
+USER_HOME="/home/$USERNAME"
+if [ -d "$USER_HOME" ]; then
+    curl -sL "https://raw.githubusercontent.com/LumaNeo/ArchInstallScripts/refs/heads/main/ArchPostInstall.sh" -o "$USER_HOME/ArchPostInstall.sh"
+    chmod +x "$USER_HOME/ArchPostInstall.sh"
+    chown -R "$USERNAME:$USERNAME" "$USER_HOME"
+else
+    echo "ERROR: Home directory $USER_HOME does not exist. Post-install script download skipped."
+    exit 1
+fi
 
 echo "=== Unmounting Drives ==="
 umount -R /mnt
