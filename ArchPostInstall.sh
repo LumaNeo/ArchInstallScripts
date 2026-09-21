@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+clear
+
 SCRIPT_PATH="$(readlink -f "$0")"
 
 echo "=== Arch Linux Post-Installation Configuration ==="
