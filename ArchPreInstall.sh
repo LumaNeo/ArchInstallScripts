@@ -54,6 +54,8 @@ mask_password() {
 USER_PASS_MASKED=$(mask_password "$USER_PASSWORD")
 ROOT_PASS_MASKED=$(mask_password "$ROOT_PASSWORD")
 
+clear
+
 echo -e "\n=== Configuration Summary ==="
 echo "Disk:           $DISK"
 echo "Swap Size:      $SWAP_SIZE"
