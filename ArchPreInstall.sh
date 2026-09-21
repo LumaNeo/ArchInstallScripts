@@ -157,14 +157,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "=== Preparing Post-Installation Script ==="
 USER_HOME="/home/$USERNAME"
-if [ -d "$USER_HOME" ]; then
-    curl -sL "https://raw.githubusercontent.com/LumaNeo/ArchInstallScripts/refs/heads/main/ArchPostInstall.sh" -o "$USER_HOME/ArchPostInstall.sh"
-    chmod +x "$USER_HOME/ArchPostInstall.sh"
-    chown -R "$USERNAME:$USERNAME" "$USER_HOME"
-else
-    echo "ERROR: Home directory $USER_HOME does not exist. Post-install script download skipped."
-    exit 1
-fi
+cd "$USER_HOME"
+curl -sL "https://raw.githubusercontent.com/LumaNeo/ArchInstallScripts/refs/heads/main/ArchPostInstall.sh" -o ArchPostInstall.sh
+chmod +x ArchPostInstall.sh
+cd ..
+cd ..
+chown -R "$USERNAME:$USERNAME" "\$USER_HOME"
 EOF
 
 echo "=== Unmounting Drives ==="
