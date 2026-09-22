@@ -25,6 +25,8 @@ FILE_MANAGER="${FILE_MANAGER:-thunar}"
 read -rp "Enter Browser [librewolf]: " BROWSER </dev/tty
 BROWSER="${BROWSER:-librewolf}"
 
+clear
+
 echo -e "\n=== Configuration Summary ==="
 echo "Window Manager: $WINDOW_MANAGER"
 echo "Terminal:       $TERMINAL"
