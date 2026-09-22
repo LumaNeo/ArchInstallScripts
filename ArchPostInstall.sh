@@ -5,10 +5,9 @@ clear
 
 SCRIPT_PATH="$(readlink -f "$0")"
 
-echo "=== Checking Internet Connectivity ==="
 if ! ping -c 1 1.1.1.1 &>/dev/null && ! ping -c 1 archlinux.org &>/dev/null; then
-    echo "ERROR: No internet connection detected."
-    echo "U need internet you idiot"
+    echo "No internet connection detected"
+    echo "Connect to internet and try again"
     exit 1
 fi
 
