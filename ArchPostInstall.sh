@@ -19,6 +19,9 @@ WINDOW_MANAGER="${WINDOW_MANAGER:-hyprland}"
 read -rp "Enter Terminal [kitty]: " TERMINAL </dev/tty
 TERMINAL="${TERMINAL:-kitty}"
 
+read -rp "Enter Text Editor [kate]: " TEXT_EDITOR </dev/tty
+TEXT_EDITOR="${TEXT_EDITOR:-kate}"
+
 read -rp "Enter File Manager [thunar]: " FILE_MANAGER </dev/tty
 FILE_MANAGER="${FILE_MANAGER:-thunar}"
 
@@ -30,6 +33,7 @@ clear
 echo -e "\n=== Configuration Summary ==="
 echo "Window Manager: $WINDOW_MANAGER"
 echo "Terminal:       $TERMINAL"
+echo "Text Editor:    $TEXT_EDITOR"
 echo "File Manager:   $FILE_MANAGER"
 echo "Browser:        $BROWSER"
 echo "============================="
@@ -48,6 +52,7 @@ echo "=== Installing Official Arch Packages ==="
 sudo pacman -S --needed --noconfirm \
     $WINDOW_MANAGER \
     $TERMINAL \
+    $TEXT_EDITOR \
     $FILE_MANAGER \
     $BROWSER \
     sddm \
