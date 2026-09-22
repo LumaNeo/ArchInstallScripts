@@ -58,17 +58,17 @@ git clone https://aur.archlinux.org/yay.git
 (cd yay && makepkg -si --noconfirm)
 rm -rf yay
 
-echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
-mkdir -p /tmp
-curl -sSL -o /tmp/install.sh https://nixos.org/nix/install
-sh /tmp/install.sh --daemon --yes </dev/null
-sudo rm -rf /tmp
-if systemctl list-unit-files | grep -q "nix-daemon.service"; then
-    sudo systemctl enable --now nix-daemon.service
-fi
-
-sudo mkdir -p /etc/nix
-echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
+# echo "=== Installing Nix Package Manager (Multi-User Installer) ==="
+# mkdir -p /tmp
+# curl -sSL -o /tmp/install.sh https://nixos.org/nix/install
+# sh /tmp/install.sh --daemon --yes </dev/null
+# sudo rm -rf /tmp
+# if systemctl list-unit-files | grep -q "nix-daemon.service"; then
+#     sudo systemctl enable --now nix-daemon.service
+# fi
+#
+# sudo mkdir -p /etc/nix
+# echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
 
 echo "=== Enabling Display Manager ==="
 sudo systemctl enable sddm
